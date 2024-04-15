@@ -21,6 +21,15 @@ class OOFPListTest:
     val expected = (List(2, 4), List(1, 3))
     assertEquals(expected, reference.partition(_ % 2 == 0))
 
+  @Test def testReverse(): Unit =
+    assertEquals(List(4, 3, 2, 1), reference.reverse())
+
+  @Test def testSpan(): Unit =
+    var expected = (List(1), List(2, 3, 4))
+    assertEquals(expected, reference.span(_ % 2 != 0))
+    expected = (List(1, 2), List(3, 4))
+    assertEquals(expected, reference.span(_ < 3))
+
   @Test def testTakeRight(): Unit =
     val expected = List(2, 3, 4)
     assertEquals(expected, reference.takeRight(3))

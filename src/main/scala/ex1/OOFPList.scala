@@ -56,7 +56,17 @@ enum List[A]:
   def partition(predicate: A => Boolean): (List[A], List[A]) =
     foldRight((Nil(), Nil()))((curr, acc) => if predicate(curr) then (curr :: acc._1, acc._2) else (acc._1, curr :: acc._2))
 
-  def span(predicate: A => Boolean): (List[A], List[A]) = ???
+  def reverse(): List[A] = this match
+    case h :: t => t.reverse().append(List(h))
+    case _ => Nil()
+
+  def span(predicate: A => Boolean): (List[A], List[A]) =
+    @annotation.tailrec
+    def spanWhile(l: List[A])(acc: List[A]): (List[A], List[A]) = l match
+      case h :: t if predicate(h) => spanWhile(t)(h :: acc)
+      case _ => (acc.reverse(), l)
+
+    spanWhile(this)(List[A]())
 
   def takeRight(n: Int): List[A] =
     foldRight(Nil())((curr, acc) => if (n - acc.length()) > 0 then curr :: acc else acc)
