@@ -57,7 +57,7 @@ enum List[A]:
 
   def span(predicate: A => Boolean): (List[A], List[A]) = ???
 
-  def takeRight(n: Int): List[A] = ???
+  def takeRight(n: Int): List[A] = foldRight(Nil())((curr, acc) => if (n - acc.length()) > 0 then curr :: acc else acc)
 
   def collect(predicate: PartialFunction[A, A]): List[A] = ???
 // Factories
