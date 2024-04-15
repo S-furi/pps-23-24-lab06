@@ -16,3 +16,7 @@ class OOFPListTest:
   @Test def testZipWithIndex(): Unit =
     val expected = List((1, 0), (2, 1), (3, 2), (4, 3))
     assertEquals(expected, reference.zipWithIndex)
+
+  @Test def testPartition(): Unit =
+    val expected = (List(2, 4), List(1, 3))
+    assertEquals(expected, reference.partition(_ % 2 == 0))
