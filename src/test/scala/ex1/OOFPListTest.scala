@@ -9,3 +9,6 @@ class OOFPListTest:
   @Test def testZipWithValue(): Unit =
     val expected = List((1, 10), (2, 10), (3, 10), (4, 10))
     assertEquals(expected, reference.zipWithValue(10))
+
+  @Test def testLength(): Unit =
+    assertEquals(4, reference.length())

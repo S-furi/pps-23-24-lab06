@@ -47,7 +47,7 @@ enum List[A]:
   // Exercise: implement the following methods
   def zipWithValue[B](value: B): List[(A, B)] = foldRight(Nil())((a, b) => (a, value) :: b)
 
-  def length(): Int = ???
+  def length(): Int = foldLeft(0)((acc, curr) => acc + 1)
 
   def zipWithIndex: List[(A, Int)] = ???
 
