@@ -25,3 +25,7 @@ class OOFPListTest:
     val expected = List(2, 3, 4)
     assertEquals(expected, reference.takeRight(3))
     assertEquals(List(4), reference.takeRight(1))
+
+  @Test def testCollect(): Unit =
+    val expected = List(3, 5)
+    assertEquals(expected, reference.collect { case x if x % 2 == 0 => x + 1 } )
