@@ -59,7 +59,7 @@ object ConferenceReviewing:
     override def averageWeightedFinalScoreMap(): Map[Int, Double] =
       articlesScores
         .map(a => a._1 -> a._2.weightedAverage((acc, curr) =>
-          acc + (curr(Question.Confidence) * curr(Question.Final) / 10)
+          acc + (curr(Question.Confidence) * curr(Question.Final) / 10.0)
         ))
 
     extension (scores: List[Map[Question, Int]])
