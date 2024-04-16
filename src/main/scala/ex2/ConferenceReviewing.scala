@@ -68,32 +68,3 @@ object ConferenceReviewing:
 
       private def averageOn(q: Question): Double =
         weightedAverage(_ + _(q))
-
-@main def main(): Unit =
-  val cr = ConferenceReviewing()
-
-  cr.loadReview(1, 8, 8, 6, 8)
-  cr.loadReview(1, 9, 9, 6, 9)
-  cr.loadReview(2, 9, 9, 10, 9)
-  cr.loadReview(2, 4, 6, 10, 6)
-  cr.loadReview(3, 3, 3, 3, 3)
-  cr.loadReview(3, 4, 4, 4, 4)
-  cr.loadReview(4, 6, 6, 6, 6)
-  cr.loadReview(4, 7, 7, 8, 7)
-
-  val map: Map[Question, Int] = Map(
-    Question.Relevance -> 8,
-    Question.Significance -> 8,
-    Question.Confidence -> 7,
-    Question.Final -> 8
-  )
-
-  cr.loadReview(4, map)
-  cr.loadReview(5, 6, 6, 6, 10) // 6.0
-  cr.loadReview(5, 7, 7, 7, 10) // 7.0
-
-  println(cr.averageWeightedFinalScoreMap()(1))
-  println(cr.averageWeightedFinalScoreMap()(2))
-  println(cr.averageWeightedFinalScoreMap()(3))
-  println(cr.averageWeightedFinalScoreMap()(4))
-  println(cr.averageWeightedFinalScoreMap()(5))
