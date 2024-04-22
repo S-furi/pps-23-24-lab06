@@ -68,8 +68,10 @@ enum List[A]:
 
     spanWhile(this)(List[A]())
 
-  def takeRight(n: Int): List[A] =
-    foldRight(Nil())((curr, acc) => if (n - acc.length()) > 0 then curr :: acc else acc)
+  def takeRight(n: Int): List[A] = foldRight((Nil[A](), n)):
+    case (elem, (result, 0)) => (result, 0)
+    case (elem, (result, n)) => (elem :: result, n - 1)
+  ._1
 
   def collect(predicate: PartialFunction[A, A]): List[A] =
     foldRight(Nil())((curr, acc) => if predicate.isDefinedAt(curr) then predicate(curr) :: acc else acc)
